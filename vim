@@ -13,11 +13,13 @@ let g:ale_fix_on_save                 = 1
 
 let g:ale_linters = {
 \   'markdown':      ['writegood', 'proselint', 'markdownlint'],
-\   'javascript':      ['eslint', 'tsserver', 'flow'],
+\   'javascript':      ['eslint', 'flow'],
 \}
 
 let g:ale_fixers = {
 \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
 \}
 
 " disables ale for go files

@@ -2,6 +2,7 @@
 
 set -e
 sudo apt-get update && sudo apt-get upgrade
+sudo add-apt-repository ppa:linuxuprising/shutter
 
 # Openbox
 sudo apt-get install -y openbox curl
@@ -118,11 +119,11 @@ if [ ! -f ${HOME}/.conkyrc ]; then
 	ln -s ${PWD}/conkyrc ${HOME}/.conkyrc
 fi
 
-ln -s ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
-ln -s ${PWD}/vim ${HOME}/.vimrc
-ln -s ${PWD}/skeletons ${HOME}/.vim/skeleton
-ln -s ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
-ln -s ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
+ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
+ln -fs ${PWD}/vim ${HOME}/.vimrc
+ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
+ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
+ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 
 
 ##########################################################################
