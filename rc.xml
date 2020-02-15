@@ -404,7 +404,7 @@
 
     <keybind key="W-e">
       <action name="Execute">
-        <command>gmrun</command>
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="C-A-t">

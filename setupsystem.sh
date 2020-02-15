@@ -2,6 +2,7 @@
 
 set -e
 sudo apt-get update && sudo apt-get upgrade
+sudo add-apt-repository ppa:linuxuprising/shutter
 
 # Openbox
 sudo apt-get install -y openbox curl
@@ -11,6 +12,7 @@ sudo apt-get install -y git
 git config --global diff.tool vimdiff
 git config --global user.name "Federico Arias"
 git config --global user.email ""
+git config --global credential.helper store
 
 # Java
 sudo apt-get install -y default-jre libreoffice jabref
@@ -132,4 +134,3 @@ ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 # removes lock screen from resume and after idle time
 sudo apt-get purge ligth-locker
 
-git config credential.helper store
