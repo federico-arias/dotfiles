@@ -20,6 +20,7 @@ sudo apt-get install -y git
 git config --global diff.tool vimdiff
 git config --global user.name "Federico Arias"
 git config --global user.email ""
+git config --global credential.helper store
 
 # Java
 sudo apt-get install -y default-jre libreoffice jabref
@@ -123,10 +124,7 @@ if [ ! -d ${HOME}/.config/openbox ]; then
 	mkdir -p ~/.config/openbox
 fi
 
-if [ ! -f ${HOME}/.conkyrc ]; then
-	ln -s ${PWD}/conkyrc ${HOME}/.conkyrc
-fi
-
+ln -fs ${PWD}/conkyrc ${HOME}/.conkyrc
 ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
 ln -fs ${PWD}/vim ${HOME}/.vimrc
 ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
@@ -144,4 +142,3 @@ ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 # removes lock screen from resume and after idle time
 sudo apt-get purge ligth-locker
 
-git config credential.helper store
