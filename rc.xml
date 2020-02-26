@@ -185,37 +185,31 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-
     <keybind key="XF86AudioPlay">
       <action name="Execute">
         <command>spotifyctl playpause</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioPrev">
       <action name="Execute">
         <command>spotifyctl previous</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
         <command>amixer -q sset Master 10%+</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
         <command>amixer -q sset Master 10%-</command>
       </action>
     </keybind>
-
     <keybind key="XF86AudioNext">
       <action name="Execute">
         <command>spotifyctl next</command>
       </action>
     </keybind>
-
     <keybind key="C-A-Right">
       <action name="GoToDesktop">
         <to>right</to>
@@ -246,9 +240,9 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-	<keybind key="F11">
-		<action name="ToggleFullscreen"/>
-	</keybind>
+    <keybind key="F11">
+      <action name="ToggleFullscreen"/>
+    </keybind>
     <keybind key="S-A-Up">
       <action name="SendToDesktop">
         <to>up</to>
@@ -367,41 +361,36 @@
       </action>
     </keybind>
     -->
-
     <keybind key="W-Left">
-        <action name="Unmaximize"/>
-        <action name="MoveResizeTo">
-            <x>0</x>
-            <y>0</y>
-            <width>50%</width>
-            <height>100%</height>
-        </action>
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>0</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
     </keybind>
-
     <keybind key="W-Up">
-        <action name="Maximize"/>
+      <action name="Maximize"/>
     </keybind>
-
     <keybind key="W-Down">
-        <action name="Unmaximize"/>
-        <action name="MoveResizeTo">
-            <x>200</x>
-            <y>200</y>
-            <width>840</width>
-            <height>460</height>
-        </action>
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>200</x>
+        <y>200</y>
+        <width>840</width>
+        <height>460</height>
+      </action>
     </keybind>
-
     <keybind key="W-Right">
-        <action name="Unmaximize"/>
-        <action name="MoveResizeTo">
-            <x>-0</x>
-            <y>0</y>
-            <width>50%</width>
-            <height>100%</height>
-        </action>
+      <action name="Unmaximize"/>
+      <action name="MoveResizeTo">
+        <x>-0</x>
+        <y>0</y>
+        <width>50%</width>
+        <height>100%</height>
+      </action>
     </keybind>
-
     <keybind key="W-e">
       <action name="Execute">
         <command>rofi -show run</command>

@@ -7,6 +7,14 @@ sudo add-apt-repository ppa:linuxuprising/shutter
 # Openbox
 sudo apt-get install -y openbox curl
 
+# Docker (this only works on Ubuntu)
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo bash -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" > /etc/apt/sources.list.d/docker-ce.list'
+sudo apt-get update
+apt-cache policy docker-ce
+sudo apt-get install -y docker-ce
+sudo usermod -aG docker ${USER}
+
 # git
 sudo apt-get install -y git
 git config --global diff.tool vimdiff

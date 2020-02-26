@@ -13,7 +13,7 @@ let g:ale_fix_on_save                 = 1
 
 let g:ale_linters = {
 \   'markdown':      ['writegood', 'proselint', 'markdownlint'],
-\   'javascript':      ['eslint', 'flow'],
+\   'javascript':      ['eslint', 'flow', 'flow-language-server'],
 \}
 
 let g:ale_fixers = {
@@ -31,6 +31,10 @@ let g:ale_pattern_options = {
 syntax on
 filetype plugin indent on
 execute pathogen#infect()
+
+" Suffixes for `gf`
+autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType go setlocal suffixesadd=.go
 
 " Sets word wrapping at words, not letters.
 "set linebreak
@@ -64,23 +68,6 @@ nnoremap <leader>en :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>es :setlocal spell spelllang=es_cl<CR>
 
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-" Sets Syntastic to active mode (checks are made on save or open) but not
-" for, in this case, Go files, which will be checked only when explicitly
-" running :SyntasticCheck
-"let g:syntastic_mode_map = {
-"    \ "mode": "active",
-"    \ "passive_filetypes": ["go"] }
-
-"let g:syntastic_markdown_checkers = ['proselint']
-
 " g] lists all tags, <Ctrl>] goes to tag
 " :tn goes to next tag, :tp, to previous one.
 "let o=system("ctags --recurse --exclude=ui --exclude=node_modules --exclude=.git --exclude=typings --exclude=*_test.go --exclude=*.spec.* --exclude=*_mock.go")
@@ -106,8 +93,6 @@ let g:vim_markdown_override_foldtext = 0
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-"vmap <Leader><Bslash> :EasyAlign*<Bar><Enter>
 
 " Align GitHub-flavored Markdown tables
 au FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
