@@ -20,6 +20,8 @@ sudo apt-get install -y git
 git config --global diff.tool vimdiff
 git config --global user.name "Federico Arias"
 git config --global user.email ""
+# asks for credentials once, then remembers them
+# warning: potentially unsafe
 git config --global credential.helper store
 
 # Java

@@ -32,10 +32,9 @@ syntax on
 filetype plugin indent on
 execute pathogen#infect()
 
-" Suffixes for `gf`
-autocmd FileType javascript setlocal suffixesadd=.js,.jsx
-autocmd FileType go setlocal suffixesadd=.go
 
+" Number of lines to scroll with CTRL-U and CTRL-D commands.
+set scroll=3
 " Sets word wrapping at words, not letters.
 "set linebreak
 set ignorecase
@@ -95,12 +94,16 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Align GitHub-flavored Markdown tables
-au FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
+autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 " Sets default formatter for SQL
 autocmd FileType sql setl formatprg=/usr/local/bin/pg_format\ -
 autocmd Filetype yml setlocal tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2
 autocmd Filetype yml setlocal expandtab
+autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
+" Suffixes for `gf`
+autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType go setlocal suffixesadd=.go
 " Modify the file after writing the buffer to disk
 " spaces are escaped
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ -o\ %:p\ 2>/dev/null<CR>
