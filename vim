@@ -14,6 +14,7 @@ let g:ale_fix_on_save                 = 1
 let g:ale_linters = {
 \   'markdown':      ['writegood', 'proselint', 'markdownlint'],
 \   'javascript':      ['eslint', 'flow', 'flow-language-server'],
+\   'sql':      ['sqlint'],
 \}
 
 let g:ale_fixers = {
@@ -32,13 +33,6 @@ syntax on
 filetype plugin indent on
 execute pathogen#infect()
 
-" Suffixes for `gf`
-autocmd FileType javascript setlocal suffixesadd=.js,.jsx
-autocmd FileType go setlocal suffixesadd=.go
-
-" Sets word wrapping at words, not letters.
-"set linebreak
-set ignorecase
 set smartcase
 " Disables word wrapping.
 set nowrap
@@ -67,7 +61,6 @@ let mapleader=","
 nnoremap <leader>en :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>es :setlocal spell spelllang=es_cl<CR>
 
-
 " g] lists all tags, <Ctrl>] goes to tag
 " :tn goes to next tag, :tp, to previous one.
 "let o=system("ctags --recurse --exclude=ui --exclude=node_modules --exclude=.git --exclude=typings --exclude=*_test.go --exclude=*.spec.* --exclude=*_mock.go")
@@ -84,26 +77,30 @@ nnoremap <leader>t :set tags=./tags;<CR>
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
-"let g:table_mode_corner='+'
-"let g:table_mode_corner_corner='|'
-"let g:table_mode_header_fillchar='-'
-let g:vim_markdown_override_foldtext = 0
+let g:vim_markdown_folding_disabled = 1
+set scroll=3
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+autocmd FileType * setlocal scroll=3
 " Align GitHub-flavored Markdown tables
-au FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
+autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 " Sets default formatter for SQL
-autocmd FileType sql setl formatprg=/usr/local/bin/pg_format\ -
+autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case=0\ --wrap-limit\ 30\ --tabs\ -
 autocmd Filetype yml setlocal tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2
 autocmd Filetype yml setlocal expandtab
 " Modify the file after writing the buffer to disk
 " spaces are escaped
-autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ -o\ %:p\ 2>/dev/null<CR>
+autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
+" Suffixes for `gf`
+autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType go setlocal suffixesadd=.go
+"break lines at words, not letters.
+autocmd FileType txt setlocal linebreak
 
 " SQL Linter (I deleted this linter so...)
 "let g:sqlfmt_command = "sqlformat"
