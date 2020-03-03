@@ -33,6 +33,11 @@ syntax on
 filetype plugin indent on
 execute pathogen#infect()
 
+" Number of lines to scroll with CTRL-U and CTRL-D commands.
+set scroll=3
+" Sets word wrapping at words, not letters.
+"set linebreak
+set ignorecase
 set smartcase
 " Disables word wrapping.
 set nowrap
@@ -93,6 +98,10 @@ autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case
 autocmd Filetype yml setlocal tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2
 autocmd Filetype yml setlocal expandtab
+autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
+" Suffixes for `gf`
+autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType go setlocal suffixesadd=.go
 " Modify the file after writing the buffer to disk
 " spaces are escaped
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>

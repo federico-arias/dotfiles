@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation
-export ZSH=/home/federico/.oh-my-zsh
-export SCALA_HOME=/home/federico/.scala
-export GOPATH=/home/federico/.gows
+export ZSH=$HOME/.oh-my-zsh
+export SCALA_HOME=$HOME/.scala
+export GOPATH=$HOME/.gows
 export CONSCRIPT_HOME="$HOME/.conscript"
 export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
 export WORKON_HOME=$HOME/.virtualenvs
@@ -59,8 +59,8 @@ plugins=(git nvm)
 
 # User configuration
 export JAVA_HOME="/usr/bin/java"
-export GRADLE_HOME="/home/federico/.graddle2/gradle-2.14"
-export ACTIVATOR_HOME="/home/federico/.activator/activator-dist-1.3.10"
+export GRADLE_HOME="$HOME/.graddle2/gradle-2.14"
+export ACTIVATOR_HOME="$HOME/.activator/activator-dist-1.3.10"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$GOPATH/bin:$CONSCRIPT_HOME/bin:$GRADLE_HOME/bin:$ACTIVATOR_HOME/bin:$SCALA_HOME/bin:$HOME/.local/bin:/usr/local/go/bin:/snap/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
