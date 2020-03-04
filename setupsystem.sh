@@ -19,7 +19,8 @@ sudo usermod -aG docker ${USER}
 sudo apt-get install -y git
 git config --global diff.tool vimdiff
 git config --global user.name "Federico Arias"
-git config --global user.email ""
+git config --global user.email "federicoariasr@gmail.com"
+git config --global push.default simple
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store
