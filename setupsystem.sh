@@ -4,6 +4,13 @@ set -e
 sudo apt-get update && sudo apt-get upgrade
 sudo add-apt-repository ppa:linuxuprising/shutter
 
+# Kubectl
+sudo apt-get update && sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+
 # Openbox
 sudo apt-get install -y openbox curl
 
@@ -21,6 +28,7 @@ git config --global diff.tool vimdiff
 git config --global user.name "Federico Arias"
 git config --global user.email "federicoariasr@gmail.com"
 git config --global commit.template $pwd/gittemplate
+git config --global push.default simple
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store

@@ -110,6 +110,7 @@ autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
+autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
 " SQL Linter (I deleted this linter so...)
 "let g:sqlfmt_command = "sqlformat"
