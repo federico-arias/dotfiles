@@ -1,10 +1,9 @@
 # If applied, this commit will...
-# [Add/Fix/Remove/Update/Refactor/Document/Secure] [issue #id] [summary]
+# [Add/Fix/Remove/Update/Refactor/Document/Secure/Deprecate] [issue #id] [summary]
 
 
 # Why is it necessary? (Bug fix, feature, improvements?)
 
-# How does the change address the issue? 
+# How does the change address the issue?
 
 # What side effects does this change have?
-
