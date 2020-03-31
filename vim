@@ -118,6 +118,7 @@ autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
+<<<<<<< HEAD
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd Filetype gitcommit setlocal spell textwidth=54
 " Number of lines to scroll with CTRL-U and CTRL-D commands.
@@ -125,6 +126,9 @@ setlocal scroll=3
 autocmd VimEnter,BufRead,BufNewFile,BufWritePre,BufWritePost * setlocal scroll=3
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
+autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
+autocmd Filetype gitcommit setlocal spell textwidth=54
+
 
 " SQL Linter (I deleted this linter so...)
 "let g:sqlfmt_command = "sqlformat"
