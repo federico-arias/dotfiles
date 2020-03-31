@@ -32,6 +32,9 @@ git config --global push.default simple
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store
+git config --global alias.changelog \
+	"log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
+
 
 # Java
 sudo apt-get install -y default-jre libreoffice jabref
