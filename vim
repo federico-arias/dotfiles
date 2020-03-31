@@ -118,7 +118,6 @@ autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
-<<<<<<< HEAD
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd Filetype gitcommit setlocal spell textwidth=54
 " Number of lines to scroll with CTRL-U and CTRL-D commands.
