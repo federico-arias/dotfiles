@@ -15,12 +15,14 @@ let g:ale_linters = {
 \   'markdown':      ['writegood', 'proselint', 'markdownlint'],
 \   'javascript':      ['eslint', 'flow', 'flow-language-server'],
 \   'sql':      ['sqlint'],
+\   'dart': ['language_server'],
 \}
 
 let g:ale_fixers = {
 \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
+\   'dart': ['dartfmt'],
 \}
 
 " disables ale for go files
@@ -101,6 +103,7 @@ autocmd Filetype yml setlocal expandtab
 autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
 " Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
 " Modify the file after writing the buffer to disk
 " spaces are escaped

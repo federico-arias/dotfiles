@@ -5,14 +5,14 @@ sudo apt-get update && sudo apt-get upgrade
 sudo add-apt-repository ppa:linuxuprising/shutter
 
 # Kubectl
-sudo apt-get update && sudo apt-get install -y apt-transport-https
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
 
 # Openbox
-sudo apt-get install -y openbox curl
+sudo apt-get install -y openbox
 
 # Docker (this only works on Ubuntu)
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -32,9 +32,26 @@ git config --global push.default simple
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store
+git config --global alias.changelog \
+	"log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
 
 # Java
-sudo apt-get install -y default-jre libreoffice jabref
+sudo apt-get install -y default-jre default-jdk
+
+# Android
+sudo apt-get install -y libmtp*
+
+# Dart
+sudo apt-get install -y apt-transport-https
+sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
+sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
+sudo apt-get update
+sudo apt-get install -y dart
+# flutter
+git clone https://github.com/flutter/flutter.git -b stable ${HOME}/.flutterrepo
+export PATH="$PATH:${HOME}/.flutterrepo/bin"
+flutter doctor
+
 
 # R
 sudo apt-get install -y r-base r-base-dev
@@ -137,6 +154,7 @@ fi
 
 ln -fs ${PWD}/conkyrc ${HOME}/.conkyrc
 ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
+ln -fs ${PWD}/zshrc ${HOME}/.zshrc
 ln -fs ${PWD}/vim ${HOME}/.vimrc
 ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
 ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
@@ -152,4 +170,3 @@ ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 
 # removes lock screen from resume and after idle time
 sudo apt-get purge ligth-locker
-
