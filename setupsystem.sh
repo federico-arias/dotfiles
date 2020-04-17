@@ -4,6 +4,12 @@ set -e
 sudo apt-get update && sudo apt-get upgrade
 sudo add-apt-repository ppa:linuxuprising/shutter
 
+# Mono
+sudo apt install apt-transport-https dirmngr gnupg ca-certificates
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb https://download.mono-project.com/repo/debian stable-stretch main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+sudo apt-get update && sudo apt-get install -y mono-complete
+
 # Kubectl
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
