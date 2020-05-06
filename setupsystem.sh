@@ -31,6 +31,7 @@ sudo usermod -aG docker ${USER}
 # git
 sudo apt-get install -y git
 git config --global diff.tool vimdiff
+git config --global push.followTags true
 git config --global user.name "Federico Arias"
 git config --global user.email "federicoariasr@gmail.com"
 git config --global commit.template $pwd/gittemplate
