@@ -295,7 +295,7 @@
     <!-- Take a screenshot of the current window with scrot when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
-        <command>scrot -s</command>
+		  <command>flameshot gui -p ~/.screenshots/</command>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
@@ -864,5 +864,9 @@
 
   # end of the example
 -->
+	  <application name="gvim">
+		  <maximized>true</maximized>
+		  <decor>no</decor>
+	  </application>
   </applications>
 </openbox_config>

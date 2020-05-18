@@ -121,12 +121,9 @@ wget https://www.codeandweb.com/texturepacker/start-download?os=ubuntu&bits=64
 
 # Vim
 sudo apt-get install -y vim
-if [ ! -d ${HOME}/.vim ]; then
-	mkdir ${HOME}/.vim
-fi
-if [ ! -d ${HOME}/.fonts ]; then
-	mkdir ${HOME}/.fonts
-fi
+[ ! -d ${HOME}/.vim ] && mkdir ${HOME}/.vim
+[ ! -d ${HOME}/.fonts ] && mkdir ${HOME}/.fonts
+[ ! -d ${HOME}/.screenshots ] && mkdir ${HOME}/.screenshots
 mkdir -p "${HOME}/.vim/colors"
 wget https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim
 mv gruvbox.vim ~/.vim/colors/
@@ -144,11 +141,17 @@ git clone https://github.com/plasticboy/vim-markdown.git ${PATHOGEN_FOLDER}/vim-
 npm install -g csslint markdownlint typescript
 pip install proselint
 
+# deprecate this! prefer sql-fmt
 wget https://github.com/darold/pgFormatter/archive/master.zip
 unzip master.zip -d .
 cd pgFormatter-master/
 perl Makefile.PL
 make && sudo make install
+
+# fzf
+#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+#~/.fzf/install
+sudo apt-get install -y fzf
 
 # Test frameworks
 

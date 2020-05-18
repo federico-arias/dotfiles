@@ -21,6 +21,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*':          ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['prettier'],
+\   'typescript': ['tslint', 'prettier'],
 \   'css': ['prettier'],
 \   'dart': ['dartfmt'],
 \}
@@ -39,7 +40,6 @@ execute pathogen#infect()
 set scroll=3
 " Sets word wrapping at words, not letters.
 "set linebreak
-set ignorecase
 set smartcase
 " Disables word wrapping.
 set nowrap
@@ -60,7 +60,7 @@ set guioptions -=r
 " Displays line numbers.
 set number
 
-" change the mapleader from \ to ,
+" change the <leader> from \ to ,
 let mapleader=","
 
 " Hit ]s and you will be transported to the next misspelled word.
@@ -101,10 +101,15 @@ autocmd Filetype yml setlocal tabstop=2
 autocmd Filetype yml setlocal shiftwidth=2
 autocmd Filetype yml setlocal expandtab
 autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
-" Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
+autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
+autocmd FileType go nmap <C-]> :GoDef<CR>
+" Go to referrers
+autocmd FileType javascript nnoremap <C-[> :ALEFindReferences<CR>
+autocmd FileType typescript nnoremap <C-[> :ALEFindReferences<CR>
+autocmd FileType go nnoremap <C-[> :GoReferrers<CR>
 " Modify the file after writing the buffer to disk
 " spaces are escaped
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
@@ -114,8 +119,16 @@ autocmd FileType go setlocal suffixesadd=.go
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd Filetype gitcommit setlocal spell textwidth=54
+" Number of lines to scroll with CTRL-U and CTRL-D commands.
+setlocal scroll=3
+autocmd VimEnter,BufRead,BufNewFile,BufWritePre,BufWritePost * setlocal scroll=3
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " SQL Linter (I deleted this linter so...)
 "let g:sqlfmt_command = "sqlformat"
 "let g:sqlfmt_options = "-r -k upper"
+
+" this fixes unexpected behavior from backspace
 set backspace=indent,eol,start
