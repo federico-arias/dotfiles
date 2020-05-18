@@ -98,7 +98,6 @@ autocmd FileType yml setlocal tabstop=2
 autocmd FileType yml setlocal shiftwidth=2
 autocmd FileType yml setlocal expandtab
 " Go to definitions
-autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
@@ -108,10 +107,6 @@ autocmd FileType go nmap <C-]> :GoDef<CR>
 autocmd FileType javascript nnoremap <C-[> :ALEFindReferences<CR>
 autocmd FileType typescript nnoremap <C-[> :ALEFindReferences<CR>
 autocmd FileType go nnoremap <C-[> :GoReferrers<CR>
-" Go to referrers
-autocmd FileType javascript nmap <C-[> :ALEFindReferences<CR>
-autocmd FileType typescript nmap <C-[> :ALEFindReferences<CR>
-autocmd FileType go nmap <C-[> :GoReferrers<CR>
 " Modify the file after writing the buffer to disk
 " spaces are escaped
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
@@ -124,16 +119,13 @@ autocmd FileType go setlocal suffixesadd=.go
 autocmd FileType txt setlocal linebreak
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd Filetype gitcommit setlocal spell textwidth=54
-" Number of lines to scroll with CTRL-U and CTRL-D commands.
-setlocal scroll=3
-autocmd VimEnter,BufRead,BufNewFile,BufWritePre,BufWritePost * setlocal scroll=3
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
 autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
 autocmd Filetype gitcommit setlocal spell textwidth=54
 " Number of lines to scroll with CTRL-U and CTRL-D commands.
 setlocal scroll=3
 autocmd VimEnter,BufRead,BufNewFile,BufWritePre,BufWritePost * setlocal scroll=3
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " SQL Linter (I deleted this linter so...)
 "let g:sqlfmt_command = "sqlformat"
