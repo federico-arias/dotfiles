@@ -864,6 +864,10 @@
 
   # end of the example
 -->
+	  <application name="google-chrome">
+		  <maximized>true</maximized>
+		  <decor>no</decor>
+	  </application>
 	  <application name="gvim">
 		  <maximized>true</maximized>
 		  <decor>no</decor>
