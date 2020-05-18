@@ -14,6 +14,7 @@ let g:ale_fix_on_save                 = 1
 let g:ale_linters = {
 \   'markdown':      ['writegood', 'proselint', 'markdownlint'],
 \   'javascript':      ['eslint', 'flow', 'flow-language-server'],
+\   'typescript':      ['tsserver', 'tslint'],
 \   'sql':      ['sqlint'],
 \   'dart': ['language_server'],
 \}
@@ -36,8 +37,6 @@ syntax on
 filetype plugin indent on
 execute pathogen#infect()
 
-" Number of lines to scroll with CTRL-U and CTRL-D commands.
-set scroll=3
 " Sets word wrapping at words, not letters.
 "set linebreak
 set smartcase
@@ -85,22 +84,20 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_folding_disabled = 1
-set scroll=3
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-autocmd FileType * setlocal scroll=3
 " Align GitHub-flavored Markdown tables
 autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 " Sets default formatter for SQL
 autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case=0\ --wrap-limit\ 30\ --tabs\ -
-autocmd Filetype yml setlocal tabstop=2
-autocmd Filetype yml setlocal shiftwidth=2
-autocmd Filetype yml setlocal expandtab
-autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
+autocmd FileType yml setlocal tabstop=2
+autocmd FileType yml setlocal shiftwidth=2
+autocmd FileType yml setlocal expandtab
+" Go to definitions
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
@@ -115,10 +112,14 @@ autocmd FileType go nnoremap <C-[> :GoReferrers<CR>
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
 " Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
+autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
+autocmd FileType typescript setlocal suffixesadd=.ts,.tsx
 autocmd FileType go setlocal suffixesadd=.go
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+autocmd Filetype gitcommit setlocal spell textwidth=54
+autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
 autocmd Filetype gitcommit setlocal spell textwidth=54
 " Number of lines to scroll with CTRL-U and CTRL-D commands.
 setlocal scroll=3
