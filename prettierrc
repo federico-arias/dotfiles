@@ -1,0 +1,5 @@
+printWidth: 69
+useTabs: true
+tabWidth: 4
+singleQuote: false
+jsxSingleQuote: false

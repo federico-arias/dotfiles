@@ -37,6 +37,8 @@ syntax on
 filetype plugin indent on
 execute pathogen#infect()
 
+" :set\ paste<CR> "+p :set nopaste
+
 " Sets word wrapping at words, not letters.
 "set linebreak
 set smartcase
@@ -51,7 +53,12 @@ set guifont=Inconsolata\ Bold\ 13.5
 " Avoids cropping of last line.
 set display+=lastline
 "set tab as default indent equivalent to 4 spaces
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+set tabstop=4
+set softtabstop=0
+"do not convert (expand) spaces to tabs
+set noexpandtab
+"expand 4 characters when indenting with >>
+set shiftwidth=4
 " Hides Vim menu.
 set guioptions -=T
 set guioptions -=m
@@ -66,6 +73,9 @@ let mapleader=","
 " Hit zg to ignore mispelled word and zG to ignore all.
 nnoremap <leader>en :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>es :setlocal spell spelllang=es_cl<CR>
+nnoremap <leader>, :cd %:h<CR>
+
+inoremap <C-V> <C-O>:set paste<CR><C-R><C-R>+<C-O>:set nopaste<CR>
 
 " g] lists all tags, <Ctrl>] goes to tag
 " :tn goes to next tag, :tp, to previous one.
@@ -85,6 +95,9 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 let g:vim_markdown_folding_disabled = 1
 
+:nnoremap <S-Space> :cp<CR>
+:nnoremap <Space> :cn<CR>
+
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -97,6 +110,8 @@ autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case
 autocmd FileType yml setlocal tabstop=2
 autocmd FileType yml setlocal shiftwidth=2
 autocmd FileType yml setlocal expandtab
+autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType yml setlocal tabstop=2 shiftwidth=2 expandtab
 " Go to definitions
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
@@ -104,9 +119,9 @@ autocmd FileType go setlocal suffixesadd=.go
 autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType go nmap <C-]> :GoDef<CR>
 " Go to referrers
-autocmd FileType javascript nnoremap <C-[> :ALEFindReferences<CR>
-autocmd FileType typescript nnoremap <C-[> :ALEFindReferences<CR>
-autocmd FileType go nnoremap <C-[> :GoReferrers<CR>
+autocmd FileType javascript nnoremap <C-}> :ALEFindReferences<CR>
+autocmd FileType typescript nnoremap <C-}> :ALEFindReferences<CR>
+autocmd FileType go nnoremap <C-}> :GoReferrers<CR>
 " Modify the file after writing the buffer to disk
 " spaces are escaped
 autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
@@ -121,9 +136,6 @@ autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 autocmd Filetype gitcommit setlocal spell textwidth=54
 autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
 autocmd Filetype gitcommit setlocal spell textwidth=54
-" Number of lines to scroll with CTRL-U and CTRL-D commands.
-setlocal scroll=3
-autocmd VimEnter,BufRead,BufNewFile,BufWritePre,BufWritePost * setlocal scroll=3
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 

@@ -93,12 +93,9 @@ source $ZSH/oh-my-zsh.sh
 export GEM_HOME=$HOME/.gems
 export PATH=$HOME/.gems/bin:$PATH
 
-#export PYTHONHOME="/usr/lib/python3.5:/usr/lib/python3.5/lib-dynload:/usr/local/lib/python3.5/dist-packages"
 
 unset PYTHONHOME
 unset PYTHONPATH
-# place this after nvm initialization!
-autoload -U add-zsh-hook
 load-nvmrc() {
   local node_version="$(nvm version)"
   local nvmrc_path="$(nvm_find_nvmrc)"
@@ -116,5 +113,8 @@ load-nvmrc() {
     nvm use default
   fi
 }
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# place this after nvm initialization!
+#autoload -U add-zsh-hook
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

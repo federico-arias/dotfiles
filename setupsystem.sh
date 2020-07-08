@@ -16,6 +16,12 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+# Minikube
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+	  && chmod +x minikube
+sudo mkdir -p /usr/local/bin/
+sudo install minikube /usr/local/bin/
+minikube config set driver virtualbox
 
 # Openbox
 sudo apt-get install -y openbox
@@ -30,12 +36,14 @@ sudo usermod -aG docker ${USER}
 
 # git
 sudo apt-get install -y git
+# these are stored in $HOME/.gitconfig
 git config --global diff.tool vimdiff
 git config --global push.followTags true
 git config --global user.name "Federico Arias"
 git config --global user.email "federicoariasr@gmail.com"
 git config --global commit.template $pwd/gittemplate
 git config --global push.default simple
+git config --global core.excludesfile ~/.gitignore_global
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store
@@ -169,6 +177,7 @@ ln -fs ${PWD}/vim ${HOME}/.vimrc
 ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
 ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
+ln -fs ${PWD}/prettierrc ${HOME}/.prettierrc
 
 
 ##########################################################################
