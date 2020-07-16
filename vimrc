@@ -27,7 +27,7 @@ let g:ale_fixers = {
 \   'dart': ['dartfmt'],
 \}
 
-" disables ale for go files
+" disables ale for Go files
 let g:ale_pattern_options = {
 \   '.*\.go$': {'ale_enabled': 0},
 \}
@@ -75,8 +75,7 @@ nnoremap <leader>en :setlocal spell spelllang=en_us<CR>
 nnoremap <leader>es :setlocal spell spelllang=es_cl<CR>
 nnoremap <leader>, :cd %:h<CR>
 
-inoremap <C-V> <C-O>:set paste<CR><C-R><C-R>+<C-O>:set nopaste<CR>
-
+nnoremap "+p :set paste<CR>i<C-R><C-R>+<C-O>:set nopaste<CR>
 " g] lists all tags, <Ctrl>] goes to tag
 " :tn goes to next tag, :tp, to previous one.
 "let o=system("ctags --recurse --exclude=ui --exclude=node_modules --exclude=.git --exclude=typings --exclude=*_test.go --exclude=*.spec.* --exclude=*_mock.go")
@@ -122,9 +121,9 @@ autocmd FileType go nmap <C-]> :GoDef<CR>
 autocmd FileType javascript nnoremap <C-}> :ALEFindReferences<CR>
 autocmd FileType typescript nnoremap <C-}> :ALEFindReferences<CR>
 autocmd FileType go nnoremap <C-}> :GoReferrers<CR>
-" Modify the file after writing the buffer to disk
+" Modify the file before writing the buffer to disk
 " spaces are escaped
-autocmd BufWritePost *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
+autocmd BufWritePre *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
 " Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
