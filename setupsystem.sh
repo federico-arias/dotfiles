@@ -23,6 +23,11 @@ sudo mkdir -p /usr/local/bin/
 sudo install minikube /usr/local/bin/
 minikube config set driver virtualbox
 
+# Pair programming
+sudo apt-get install -y tmux
+sudo adduser invitado
+sudo usermod -a -G users invitado
+
 # Openbox
 sudo apt-get install -y openbox
 

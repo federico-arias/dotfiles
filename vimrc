@@ -118,12 +118,13 @@ autocmd FileType go setlocal suffixesadd=.go
 autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType go nmap <C-]> :GoDef<CR>
 " Go to referrers
-autocmd FileType javascript nnoremap <C-}> :ALEFindReferences<CR>
-autocmd FileType typescript nnoremap <C-}> :ALEFindReferences<CR>
-autocmd FileType go nnoremap <C-}> :GoReferrers<CR>
+autocmd FileType javascript nnoremap <Leader><Leader> :ALEFindReferences<CR>
+autocmd FileType typescript nnoremap <Leader><Leader> :ALEFindReferences<CR>
+autocmd FileType go nnoremap <Leader><Leader> :GoReferrers<CR>
+" format sql with sqlfmt
+autocmd Filetype sql set formatprg=/home/federico/.gows/bin/sqlfmt\ --casemode\ lower
 " Modify the file before writing the buffer to disk
-" spaces are escaped
-autocmd BufWritePre *.sql silent ! /usr/local/bin/pg_format\ %:p\ --tabs -o\ %:p\ 2>/dev/null<CR>
+autocmd BufWritePre *.sql :execute "normal ggVGgq"
 " Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
@@ -137,10 +138,6 @@ autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
 autocmd Filetype gitcommit setlocal spell textwidth=54
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-
-" SQL Linter (I deleted this linter so...)
-"let g:sqlfmt_command = "sqlformat"
-"let g:sqlfmt_options = "-r -k upper"
 
 " this fixes unexpected behavior from backspace
 set backspace=indent,eol,start
