@@ -50,14 +50,15 @@ git config --global commit.template $PWD/gittemplate
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
 # asks for credentials once, then remembers them
-# warning: potentially unsafe
+# WARNING: potentially unsafe
 git config --global credential.helper store
 git config --global alias.changelog "log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
 
 sudo apt-get install -y zsh
 chsh -s /bin/zsh $USER
 sudo apt-get install blueman bluez
-synclient TapButton1=1 #touchpad mouse click
+# synclient TapButton1=1 #touchpad mouse click
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
 # Java
