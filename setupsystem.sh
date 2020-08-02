@@ -1,39 +1,39 @@
 #!/bin/bash
 
+UBUNTU_VERSION=focal
+
 set -e
 sudo apt-get update && sudo apt-get upgrade
-sudo add-apt-repository ppa:linuxuprising/shutter
 
 # Mono
-sudo apt install apt-transport-https dirmngr gnupg ca-certificates
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-echo "deb https://download.mono-project.com/repo/debian stable-stretch main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+sudo apt install -y apt-transport-https dirmngr gnupg ca-certificates
 sudo apt-get update && sudo apt-get install -y mono-complete
 
 # Kubectl
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
-# Minikube
+
+## Minikube
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
 	  && chmod +x minikube
 sudo mkdir -p /usr/local/bin/
 sudo install minikube /usr/local/bin/
 minikube config set driver virtualbox
 
-# Pair programming
+## Pair programming
 sudo apt-get install -y tmux
-sudo adduser invitado
-sudo usermod -a -G users invitado
+#sudo adduser invitado
+#sudo usermod -a -G users invitado
 
-# Openbox
-sudo apt-get install -y openbox
+## Openbox
+sudo apt-get install -y openbox rofi flameshot
 
-# Docker (this only works on Ubuntu)
+## Docker (this only works on Ubuntu)
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo bash -c 'echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" > /etc/apt/sources.list.d/docker-ce.list'
+echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu disco stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
 sudo apt-get update
 apt-cache policy docker-ce
 sudo apt-get install -y docker-ce
@@ -46,14 +46,19 @@ git config --global diff.tool vimdiff
 git config --global push.followTags true
 git config --global user.name "Federico Arias"
 git config --global user.email "federicoariasr@gmail.com"
-git config --global commit.template $pwd/gittemplate
+git config --global commit.template $PWD/gittemplate
 git config --global push.default simple
 git config --global core.excludesfile ~/.gitignore_global
 # asks for credentials once, then remembers them
 # warning: potentially unsafe
 git config --global credential.helper store
-git config --global alias.changelog \
-	"log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
+git config --global alias.changelog "log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
+
+sudo apt-get install -y zsh
+chsh -s /bin/zsh $USER
+sudo apt-get install blueman bluez
+synclient TapButton1=1 #touchpad mouse click
+
 
 # Java
 sudo apt-get install -y default-jre default-jdk
@@ -68,10 +73,9 @@ sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux
 sudo apt-get update
 sudo apt-get install -y dart
 # flutter
-git clone https://github.com/flutter/flutter.git -b stable ${HOME}/.flutterrepo
+rm -rf ${HOME}/.flutterrepo && git clone https://github.com/flutter/flutter.git -b stable ${HOME}/.flutterrepo
 export PATH="$PATH:${HOME}/.flutterrepo/bin"
 flutter doctor
-
 
 # R
 sudo apt-get install -y r-base r-base-dev
@@ -93,16 +97,16 @@ curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-instal
 source /home/federico/.rvm/scripts/rvm
 #gem instal sqlint
 
+
 # Python
-sudo apt-get install -y python python3 python-dev python-virtualenv
-virtualenv --python=python3.7 $HOME/.python3
-virtualenv --python=python2.7 $HOME/.python2 # Creates virtual environments for python
-source .python2/bin/activate # activates the virtualenv
-deactivate
+sudo apt-get install -y python python3 python-dev python3-pip python3-virtualenv
+#virtualenv --python=python3.8 $HOME/.python3
+#source .python3/bin/activate # activates the virtualenv
+#deactivate
 
 # Node.js
 sudo apt-get install -y build-essential openssl libssl-dev curl ruby ruby-dev rubygems
-curl https://raw.githubusercontent.com/creationix/nvm/v0.24.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 export NVM_DIR="/home/federico/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -115,10 +119,10 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt update && sudo apt install -y yarn
 
 # LaTex
-# sudo apt-get install -y pandoc texlive-full
-# mkdir -p ${HOME}/.pandoc/templates
-# git clone https://github.com/Wandmalfarbe/pandoc-latex-template
-# cp pandoc-latex-template/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
+ sudo apt-get install -y pandoc texlive-full
+ mkdir -p ${HOME}/.pandoc/templates
+ git clone https://github.com/Wandmalfarbe/pandoc-latex-template
+ cp pandoc-latex-template/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
 
 ##########################################################################
 # Graphic design
@@ -134,7 +138,7 @@ sudo add-apt-repository mapeditor.org/tiled
 wget https://www.codeandweb.com/texturepacker/start-download?os=ubuntu&bits=64
 
 # Vim
-sudo apt-get install -y vim
+sudo apt-get install -y vim-gtk
 [ ! -d ${HOME}/.vim ] && mkdir ${HOME}/.vim
 [ ! -d ${HOME}/.fonts ] && mkdir ${HOME}/.fonts
 [ ! -d ${HOME}/.screenshots ] && mkdir ${HOME}/.screenshots
@@ -153,18 +157,9 @@ git clone https://github.com/plasticboy/vim-markdown.git ${PATHOGEN_FOLDER}/vim-
 
 # installs linters
 npm install -g csslint markdownlint typescript
-pip install proselint
-
-# deprecate this! prefer sql-fmt
-wget https://github.com/darold/pgFormatter/archive/master.zip
-unzip master.zip -d .
-cd pgFormatter-master/
-perl Makefile.PL
-make && sudo make install
+pip3 install proselint
 
 # fzf
-#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-#~/.fzf/install
 sudo apt-get install -y fzf
 
 # Test frameworks
@@ -178,7 +173,7 @@ fi
 ln -fs ${PWD}/conkyrc ${HOME}/.conkyrc
 ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
 ln -fs ${PWD}/zshrc ${HOME}/.zshrc
-ln -fs ${PWD}/vim ${HOME}/.vimrc
+ln -fs ${PWD}/vimrc ${HOME}/.vimrc
 ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
 ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
@@ -189,8 +184,8 @@ ln -fs ${PWD}/prettierrc ${HOME}/.prettierrc
 # DIY
 ##########################################################################
 
-# sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
-# sudo apt-get install -y freecad freecad-doc
+sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
+sudo apt-get install -y freecad freecad-doc
 
 # removes lock screen from resume and after idle time
-sudo apt-get purge ligth-locker
+#sudo apt-get purge light-locker

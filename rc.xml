@@ -877,6 +877,10 @@
 		  <maximized>true</maximized>
 		  <decor>no</decor>
 	  </application>
+	  <application name="firefox">
+		  <maximized>true</maximized>
+		  <decor>no</decor>
+	  </application>
 	  <application name="gvim">
 		  <maximized>true</maximized>
 		  <decor>no</decor>

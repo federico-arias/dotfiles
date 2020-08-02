@@ -64,7 +64,7 @@ export ACTIVATOR_HOME="$HOME/.activator/activator-dist-1.3.10"
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$GOPATH/bin:$CONSCRIPT_HOME/bin:$GRADLE_HOME/bin:$ACTIVATOR_HOME/bin:$SCALA_HOME/bin:$HOME/.local/bin:/usr/local/go/bin:/snap/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+[ -f $ZSH/oh-my-zsh.sh ] && source "$ZSH/oh-my-zsh.sh"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
