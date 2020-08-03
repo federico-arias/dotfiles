@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_system () {
-	sudo apt-get install -y openbox rofi flameshot
+	sudo apt-get install -y openbox rofi flameshot inotify-tools
 	chsh -s /bin/zsh $USER
 	sudo apt-get install blueman bluez
 	sudo apt-get install -y inkscape gimp blender
@@ -17,7 +17,7 @@ install_system () {
 	ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 	ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 	ln -fs ${PWD}/prettierrc ${HOME}/.prettierrc
-	# We use this becaus ${HOME}/.zshrc is overwritten by oh my zsh
+	# We use this because ${HOME}/.zshrc is overwritten by oh my zsh
 	ln -fs ${PWD}/custom.zsh ${ZSH_CUSTOM}/custom.zsh
 
 	[ ! -d ${HOME}/.fonts ] && mkdir ${HOME}/.fonts
@@ -89,6 +89,16 @@ install_go () {
 	gofilename=go$goversion.$goos-$goarch.tar.gz
 	wget --output-document /tmp/$gofilename https://golang.org/dl/$gofilename
 	sudo tar -C /usr/local -xzf /tmp/$gofilename
+	go get -u -d github.com/golang-migrate/migrate/cmd/migrate
+	cd $GOPATH/src/github.com/golang-migrate/migrate/cmd/migrate
+	git checkout v4.12.1
+	go build -tags 'postgres' -ldflags="-X main.Version=$(git describe --tags)" \
+		-o $GOPATH/bin/migrate $GOPATH/src/github.com/golang-migrate/migrate/cmd/migrate
+
+	go get -u -d github.com/federico-arias/fixtures
+	[[ -z $GOPATH ]] && GOPATH=${HOME}/.gows
+	go build -o ${HOME}/.local/bin/fixtures \
+		${GOPATH}/src/github.com/federico-arias/fixtures
 }
 
 install_flutter () {
