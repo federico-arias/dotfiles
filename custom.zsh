@@ -11,6 +11,7 @@ export PATH=$HOME/.gems/bin:$PATH
 # Golang
 export GOPATH=$HOME/.gows
 export PATH="$PATH:$GOPATH/bin:/usr/local/go/bin"
+export GO111MODULE=on
 # Conscript (what is this?)
 export CONSCRIPT_HOME="$HOME/.conscript"
 export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"

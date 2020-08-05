@@ -1,13 +1,12 @@
 #!/bin/bash
 
 install_system () {
-	sudo apt-get install -y openbox rofi flameshot inotify-tools
+	sudo apt-get install -y openbox rofi flameshot inotify-tools jq zsh \
+		blueman bluez \
+		inkscape gimp blender
 	chsh -s /bin/zsh $USER
-	sudo apt-get install blueman bluez
-	sudo apt-get install -y inkscape gimp blender
 	# synclient TapButton1=1 #touchpad mouse click
 	# Zsh
-	sudo apt-get install -y zsh
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	ZSH_CUSTOM=${HOME}/.oh-my-zsh/custom/
 	ln -fs ${PWD}/conkyrc ${HOME}/.conkyrc
@@ -23,6 +22,9 @@ install_system () {
 	[ ! -d ${HOME}/.fonts ] && mkdir ${HOME}/.fonts
 	[ ! -d ${HOME}/.screenshots ] && mkdir ${HOME}/.screenshots
 	[ ! -d ${HOME}/.config/openbox ] && mkdir -p ${HOME}/.config/openbox
+	wget --directory-prefix /tmp https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
+	sudo apt-get install -y xfonts-75dpi
+	sudo dpkg -i /tmp/wkhtmltox_0.12.6-1.focal_amd64.deb
 }
 
 install_editor () {
