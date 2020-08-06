@@ -79,7 +79,6 @@ nnoremap "+p :set paste<CR>i<C-R><C-R>+<C-O>:set nopaste<CR>
 " g] lists all tags, <Ctrl>] goes to tag
 " :tn goes to next tag, :tp, to previous one.
 "let o=system("ctags --recurse --exclude=ui --exclude=node_modules --exclude=.git --exclude=typings --exclude=*_test.go --exclude=*.spec.* --exclude=*_mock.go")
-set tags=./tags
 " Creates a tag file by searching recursively.
 nnoremap <leader>ct :!ctags --recurse --exclude=ui --exclude=node_modules --exclude=.git --exclude=typings --exclude=*_test.go --exclude=*.spec.* --exclude=*_mock.go<CR>
 " The leading `./` tells Vim to use the directory
@@ -111,11 +110,13 @@ autocmd FileType yml setlocal shiftwidth=2
 autocmd FileType yml setlocal expandtab
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yml setlocal tabstop=2 shiftwidth=2 expandtab
-" Go to definitions
+" Navigate to file
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
 autocmd FileType go setlocal suffixesadd=.go
+" Go to definitions
 autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
+autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType go nmap <C-]> :GoDef<CR>
 " Go to referrers
 autocmd FileType javascript nnoremap <Leader><Leader> :ALEFindReferences<CR>
