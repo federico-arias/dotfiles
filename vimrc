@@ -125,7 +125,7 @@ autocmd FileType go nnoremap <Leader><Leader> :GoReferrers<CR>
 " format sql with sqlfmt
 autocmd Filetype sql set formatprg=/home/federico/.gows/bin/sqlfmt\ --casemode\ lower
 " Modify the file before writing the buffer to disk
-autocmd BufWritePre *.sql :execute "normal ggVGgq"
+"autocmd BufWritePre *.sql :execute "normal ggVGgq"
 " Suffixes for `gf`
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx

@@ -25,6 +25,7 @@ install_system () {
 	wget --directory-prefix /tmp https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 	sudo apt-get install -y xfonts-75dpi
 	sudo dpkg -i /tmp/wkhtmltox_0.12.6-1.focal_amd64.deb
+	curl https://cli-assets.heroku.com/install.sh | sh
 }
 
 install_editor () {
