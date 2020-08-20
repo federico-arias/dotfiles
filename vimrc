@@ -105,10 +105,8 @@ nmap ga <Plug>(EasyAlign)
 autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 " Sets default formatter for SQL
 autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case=0\ --wrap-limit\ 30\ --tabs\ -
-autocmd FileType yml setlocal tabstop=2
-autocmd FileType yml setlocal shiftwidth=2
-autocmd FileType yml setlocal expandtab
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yml setlocal tabstop=2 shiftwidth=2 expandtab
 " Navigate to file
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx

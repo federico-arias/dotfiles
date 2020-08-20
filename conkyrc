@@ -139,4 +139,5 @@ $alignr${color a7a7a7}Total:${color} ${totaldown eno1}
 BATTERY
 $hr
 ${battery BAT1}
-${texeci 1800 acpi | awk -F " " '{ print $4 }' }
+${battery_bar BAT1}
+#${texeci 1800 acpi | awk -F " " '{ print $4 }' }
