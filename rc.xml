@@ -226,6 +226,11 @@
         <command>spotifyctl next</command>
       </action>
     </keybind>
+    <keybind key="XF86AudioMute">
+      <action name="Execute">
+        <command>pactl set-sink-mute 0 toggle</command>
+      </action>
+    </keybind>
     <keybind key="C-A-Right">
       <action name="GoToDesktop">
         <to>right</to>

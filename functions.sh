@@ -16,6 +16,7 @@ install_system () {
 	ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 	ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 	ln -fs ${PWD}/prettierrc ${HOME}/.prettierrc
+	ln -fs ${PWD}/gitignore ${HOME}/.gitignore
 	# We use this because ${HOME}/.zshrc is overwritten by oh my zsh
 	ln -fs ${PWD}/custom.zsh ${ZSH_CUSTOM}/custom.zsh
 
@@ -77,7 +78,7 @@ install_git () {
 	git config --global user.email "federicoariasr@gmail.com"
 	git config --global commit.template $PWD/gittemplate
 	git config --global push.default simple
-	git config --global core.excludesfile ~/.gitignore_global
+	git config --global core.excludesfile ~/.gitignore
 	# asks for credentials once, then remembers them
 	# WARNING: potentially unsafe
 	git config --global credential.helper store
