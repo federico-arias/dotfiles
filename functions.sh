@@ -56,8 +56,8 @@ install_node() {
 	# Node.js
 	sudo apt-get install -y build-essential openssl libssl-dev curl ruby ruby-dev rubygems
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-	export NVM_DIR="/home/federico/.nvm"
-	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 	nvm install --lts=erbium # installs node in ~/.nvm/<versionnumber>/
 	nvm use node # changes $PATH to point to latest stable version
@@ -93,6 +93,9 @@ install_go () {
 	gofilename=go$goversion.$goos-$goarch.tar.gz
 	wget --output-document /tmp/$gofilename https://golang.org/dl/$gofilename
 	sudo tar -C /usr/local -xzf /tmp/$gofilename
+
+	export PATH=$PATH:/usr/local/go/bin
+	[[ -z $GOPATH ]] && export GOPATH=${HOME}/.gows
 	go get -u -d github.com/golang-migrate/migrate/cmd/migrate
 	cd $GOPATH/src/github.com/golang-migrate/migrate/cmd/migrate
 	git checkout v4.12.1
@@ -100,9 +103,9 @@ install_go () {
 		-o $GOPATH/bin/migrate $GOPATH/src/github.com/golang-migrate/migrate/cmd/migrate
 
 	go get -u -d github.com/federico-arias/fixtures
-	[[ -z $GOPATH ]] && GOPATH=${HOME}/.gows
 	go build -o ${HOME}/.local/bin/fixtures \
 		${GOPATH}/src/github.com/federico-arias/fixtures
+	# alternative: go install github.com/federico-arias/fixtures
 }
 
 install_flutter () {
@@ -164,6 +167,7 @@ install_kubernetes () {
 	apt-cache policy docker-ce
 	sudo apt-get install -y docker-ce
 	sudo usermod -aG docker ${USER}
+	sudo systemctl restart docker
 
 	# Mono
 	sudo apt install -y apt-transport-https dirmngr gnupg ca-certificates virtualbox

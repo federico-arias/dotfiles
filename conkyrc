@@ -141,3 +141,4 @@ $hr
 ${battery BAT1}
 ${battery_bar BAT1}
 #${texeci 1800 acpi | awk -F " " '{ print $4 }' }
+${texeci 1800 pactl list sinks | grep "Mute" }
