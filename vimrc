@@ -1,5 +1,16 @@
 set nocompatible
 
+" set the runtime path (rtp) to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
+
 " ALE
 let g:ale_sign_error                  = '✘'
 let g:ale_sign_warning                = '⚠'
@@ -17,6 +28,8 @@ let g:ale_linters = {
 \   'typescript':      ['tsserver', 'tslint'],
 \   'sql':      ['sqlint'],
 \   'dart': ['language_server'],
+\   'yaml': ['yamllint'],
+\   'python': ['flake8'],
 \}
 
 let g:ale_fixers = {
@@ -25,6 +38,7 @@ let g:ale_fixers = {
 \   'typescript': ['tslint', 'prettier'],
 \   'css': ['prettier'],
 \   'dart': ['dartfmt'],
+\   'python': ['black'],
 \}
 
 " disables ale for Go files
@@ -101,34 +115,32 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+" set filetypes as typescript.tsx
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 " Align GitHub-flavored Markdown tables
 autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 " Sets default formatter for SQL
 autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case=0\ --wrap-limit\ 30\ --tabs\ -
+" Replace tabs for spaces in certain file types
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType yml setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType yaml,yml setlocal tabstop=2 shiftwidth=2 expandtab
 " Navigate to file
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
-autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
+autocmd FileType javascriptreact setlocal suffixesadd=.js,.jsx
+autocmd FileType typescript,typescript.tsx setlocal suffixesadd=.ts,.tsx
 autocmd FileType go setlocal suffixesadd=.go
 " Go to definitions
 autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
-autocmd FileType javascript nmap <C-]> :ALEGoToDefinition<CR>
+autocmd FileType javascript,javascriptreact nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType go nmap <C-]> :GoDef<CR>
 " Go to referrers
-autocmd FileType javascript nnoremap <Leader><Leader> :ALEFindReferences<CR>
-autocmd FileType typescript nnoremap <Leader><Leader> :ALEFindReferences<CR>
+autocmd FileType javascript,javascriptreact,typescript nnoremap <Leader><Leader> :ALEFindReferences<CR>
 autocmd FileType go nnoremap <Leader><Leader> :GoReferrers<CR>
 " format sql with sqlfmt
-autocmd Filetype sql set formatprg=/home/federico/.gows/bin/sqlfmt\ --casemode\ lower
+autocmd Filetype sql set formatprg=/home/federico/.local/bin/sqlfmt\
 " Modify the file before writing the buffer to disk
 "autocmd BufWritePre *.sql :execute "normal ggVGgq"
-" Suffixes for `gf`
-autocmd FileType javascript setlocal suffixesadd=.js,.jsx
-autocmd FileType *.jsx setlocal suffixesadd=.js,.jsx
-autocmd FileType typescript setlocal suffixesadd=.ts,.tsx
-autocmd FileType go setlocal suffixesadd=.go
+"
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80

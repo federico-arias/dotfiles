@@ -25,6 +25,10 @@ case "${subcommand}" in
 		install_ruby
 		exit
 		;;
+	git )
+		install_git
+		exit
+		;;
 esac
 
 exit
@@ -43,10 +47,6 @@ then
 fi
 
 # LaTex
- sudo apt-get install -y pandoc texlive-full
- mkdir -p ${HOME}/.pandoc/templates
- git clone https://github.com/Wandmalfarbe/pandoc-latex-template
- cp pandoc-latex-template/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
 
 sudo add-apt-repository mapeditor.org/tiled
 wget https://www.codeandweb.com/texturepacker/start-download?os=ubuntu&bits=64

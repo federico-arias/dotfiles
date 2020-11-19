@@ -1,0 +1,163 @@
+
+
+Tue Sep  8 23:28:23 2020
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.4.0-26-generic (#30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'LC_CTYPE=en_US.UTF-8;LC_NUMERIC=es_CL.UTF-8;LC_TIME=en_US.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=es_CL.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=es_CL.UTF-8;LC_NAME=es_CL.UTF-8;LC_ADDRESS=es_CL.UTF-8;LC_TELEPHONE=es_CL.UTF-8;LC_MEASUREMENT=es_CL.UTF-8;LC_IDENTIFICATION=es_CL.UTF-8'.
+
+
+Tue Sep  8 23:28:23 2020
+Command line: TestDisk /debug
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.4.0-26-generic (#30-Ubuntu SMP Mon Apr 20 16:58:30 UTC 2020) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop0 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop1 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop2 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop3 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop4 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop5 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop6 - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop7 - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 1000 GB / 931 GiB - CHS 121597 255 63, sector size=512 - WD Elements 10B8, FW:1012
+Disk /dev/nvme0n1 - 512 GB / 476 GiB - CHS 488386 64 32, sector size=512
+
+Partition table type (auto): Intel
+Disk /dev/sda - 1000 GB / 931 GiB - WD Elements 10B8
+Partition table type: Intel
+
+Analyse Disk /dev/sda - 1000 GB / 931 GiB - CHS 121597 255 63
+Geometry from i386 MBR: head=255 sector=63
+BAD_RS LBA=2048 16450559
+FAT32 at 0/32/33
+Info: size boot_sector 1953456128, partition 1953456128
+FAT1 : 32-238432
+FAT2 : 238433-476833
+start_rootdir : 476834 root cluster : 2
+Data : 476834-1953456097
+sectors : 1953456128
+cluster_size : 64
+no_of_cluster : 30515301 (2 - 30515302)
+fat_length 238401 calculated 238401
+sect/track 32 (FAT) != 63 (HD)
+file_pread(4,64,buffer,478882(29/206/20)) read err: Input/output error
+file_pread(4,1,buffer,478882(29/206/20)) read err: Input/output error
+fat32_set_part_name() cannot read FAT32 root cluster.
+set_FAT_info: name from BS used
+Current partition structure:
+Warning: number of sectors per track mismatches 32 (FAT) != 63 (HD)
+ 1 * FAT32                    0  32 33 121597  37 40 1953456128 [ELEMENTS]
+
+Bad relative sector.
+
+search_part()
+Disk /dev/sda - 1000 GB / 931 GiB - CHS 121597 255 63
+FAT32 at 0/32/33
+FAT1 : 32-238432
+FAT2 : 238433-476833
+start_rootdir : 476834 root cluster : 2
+Data : 476834-1953456097
+sectors : 1953456128
+cluster_size : 64
+no_of_cluster : 30515301 (2 - 30515302)
+fat_length 238401 calculated 238401
+sect/track 32 (FAT) != 63 (HD)
+file_pread(4,64,buffer,478882(29/206/20)) read err: Input/output error
+file_pread(4,1,buffer,478882(29/206/20)) read err: Input/output error
+fat32_set_part_name() cannot read FAT32 root cluster.
+set_FAT_info: name from BS used
+
+FAT32 at 0/32/33
+FAT: cluster=2(0x2), pos=478882
+file_pread(4,63,buffer,478883(29/206/21)) read err: Input/output error
+file_pread(4,1,buffer,478883(29/206/21)) read err: Input/output error
+FAT: Can't read directory cluster.
+     FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+     FAT32, blocksize=32768, 1000 GB / 931 GiB
+
+Results
+   * FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+     FAT32, blocksize=32768, 1000 GB / 931 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 1953456128 linear /dev/sda 2048" | dmsetup create test0
+
+
+dir_partition inode=0
+   * FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+     FAT32, blocksize=32768, 1000 GB / 931 GiB
+FAT: cluster=2(0x2), pos=478882
+file_pread(4,62,buffer,478884(29/206/22)) read err: Input/output error
+FAT: Can't read directory cluster.
+Directory /
+Change partition type:
+   * FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+     FAT32, blocksize=32768, 1000 GB / 931 GiB
+
+
+dir_partition inode=0
+   L FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+     FAT32, blocksize=32768, 1000 GB / 931 GiB
+FAT: cluster=2(0x2), pos=478882
+FAT: Can't read directory cluster.
+Directory /
+
+interface_write()
+ 1 * FAT32 LBA                0  32 33 121597  37 40 1953456128 [ELEMENTS]
+Don't write, no confirmation
+
+Analyse Disk /dev/sda - 1000 GB / 931 GiB - CHS 121597 255 63
+Geometry from i386 MBR: head=255 sector=63
+BAD_RS LBA=2048 16450559
+FAT32 at 0/32/33
+Info: size boot_sector 1953456128, partition 1953456128
+FAT1 : 32-238432
+FAT2 : 238433-476833
+start_rootdir : 476834 root cluster : 2
+Data : 476834-1953456097
+sectors : 1953456128
+cluster_size : 64
+no_of_cluster : 30515301 (2 - 30515302)
+fat_length 238401 calculated 238401
+sect/track 32 (FAT) != 63 (HD)
+file_pread(4,64,buffer,478882(29/206/20)) read err: Input/output error
+file_pread(4,1,buffer,478882(29/206/20)) read err: Input/output error
+fat32_set_part_name() cannot read FAT32 root cluster.
+set_FAT_info: name from BS used
+Current partition structure:
+Warning: number of sectors per track mismatches 32 (FAT) != 63 (HD)
+ 1 * FAT32                    0  32 33 121597  37 40 1953456128 [ELEMENTS]
+
+Bad relative sector.
+
+search_part()
+Disk /dev/sda - 1000 GB / 931 GiB - CHS 121597 255 63
+FAT32 at 0/32/33
+FAT1 : 32-238432
+FAT2 : 238433-476833
+start_rootdir : 476834 root cluster : 2
+Data : 476834-1953456097
+sectors : 1953456128
+cluster_size : 64
+no_of_cluster : 30515301 (2 - 30515302)
+fat_length 238401 calculated 238401
+sect/track 32 (FAT) != 63 (HD)
+file_pread(4,64,buffer,478882(29/206/20)) read err: Input/output error
+SIGINT detected! TestDisk has been killed.

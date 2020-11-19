@@ -44,6 +44,9 @@ install_editor () {
 	git clone https://github.com/junegunn/vim-easy-align ${PATHOGEN_FOLDER}/vim-easy-align
 	git clone https://github.com/plasticboy/vim-markdown.git ${PATHOGEN_FOLDER}/vim-markdown
 
+	# install Vundle
+	 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 	# installs linters
 	npm install -g csslint markdownlint typescript
 	pip3 install proselint
@@ -83,6 +86,7 @@ install_git () {
 	# WARNING: potentially unsafe
 	git config --global credential.helper store
 	git config --global alias.changelog "log --decorate --date=format:'%B %d, %Y' --pretty=format:'%ad: %s (%h)' --abbrev-commit"
+	git config --global alias.daily "log --decorate --oneline --date=format:'%B %d, %Y' --since='1 day' --author='Federico' --no-merges --shortstat"
 }
 
 install_go () {
@@ -108,10 +112,28 @@ install_go () {
 	# alternative: go install github.com/federico-arias/fixtures
 }
 
+install_pg() {
+	#USER0=${USER}
+	#sudo -u postgres -i
+	#psql -c "create user ${USER0};"
+	#psql -c "create database ${USER0};"
+	#psql -c "grant all privileges on database ${USER0} to ${USER0};"
+}
+
+install_java() {
+	sudo apt-get install -y default-jre default-jdk
+}
+
+install_scala() {
+	echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+	curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+	sudo apt-get update
+	sudo apt-get install sbt
+}
+
 install_flutter () {
 	sudo apt-get install -y libglu1-mesa
-	# Java
-	sudo apt-get install -y default-jre default-jdk
+	install_java
 	# Android
 	sudo apt-get install -y libmtp*
 	# Install Android Studio
@@ -153,10 +175,28 @@ install_ruby () {
 }
 
 install_python () {
-	sudo apt-get install -y python python3 python-dev python3-pip python3-virtualenv
-	#virtualenv --python=python3.8 $HOME/.python3
+	sudo apt-get install -y python python3 python-dev python3-pip # python3-virtualenv (no! debian package is broken)
+	pip3 install testresources
+	pip3 install --force-reinstall virtualenv
+	virtualenv --python=python3.8 $HOME/.python3
 	#source .python3/bin/activate # activates the virtualenv
 	#deactivate
+}
+
+install_latex () {
+	sudo apt-get install -y pandoc texlive-full
+	mkdir -p ${HOME}/.pandoc/templates
+	git clone https://github.com/Wandmalfarbe/pandoc-latex-template
+	cp pandoc-latex-template/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
+	wget --directory-prefix /tmp https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v1.5.0/Eisvogel-1.5.0.zip
+	mkdir -p ${HOME}/.pandoc
+	unzip -d ${HOME}/.pandoc /tmp/Eisvogel-1.5.0.zip
+	curl -sSL https://get.haskellstack.org/ | sh
+	sudo apt-get install happy alex
+	# https://github.com/jnoll/gantt
+	git clone https://github.com/jnoll/gantt /tmp/gantt
+	cd /tmp/gantt
+	stack build && stack install
 }
 
 install_kubernetes () {
