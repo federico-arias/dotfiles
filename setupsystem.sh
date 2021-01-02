@@ -6,6 +6,8 @@ subcommand=$1
 shift
 set -e
 
+sudo apt-get update && sudo apt-get upgrade
+
 source "${PWD}/functions.sh"
 
 case "${subcommand}" in
@@ -29,14 +31,13 @@ case "${subcommand}" in
 		install_git
 		exit
 		;;
+	latex )
+		install_latex
+		exit
+		;;
 esac
-
 exit
 
-sudo apt-get update && sudo apt-get upgrade
-
-# Postgres
-sudo apt-get install -y postgresql
 
 # Pair programming
 sudo apt-get install -y tmux
@@ -45,8 +46,6 @@ then
 	sudo adduser invitado
 	sudo usermod -a -G users invitado
 fi
-
-# LaTex
 
 sudo add-apt-repository mapeditor.org/tiled
 wget https://www.codeandweb.com/texturepacker/start-download?os=ubuntu&bits=64

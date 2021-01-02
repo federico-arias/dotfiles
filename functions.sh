@@ -62,8 +62,9 @@ install_node() {
 	export NVM_DIR="$HOME/.nvm"
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-	nvm install --lts=erbium # installs node in ~/.nvm/<versionnumber>/
+	nvm install --lts=fermium # installs node in ~/.nvm/<versionnumber>/
 	nvm use node # changes $PATH to point to latest stable version
+	nvm alias default lts/fermium
 
 	# Yarn
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -90,7 +91,7 @@ install_git () {
 }
 
 install_go () {
-	echo "Installing Go"
+	echo "Installing Go..."
 	goversion="1.14.6"
 	goarch="amd64"
 	goos="linux"
@@ -113,7 +114,8 @@ install_go () {
 }
 
 install_pg() {
-	#USER0=${USER}
+	sudo apt-get install -y postgresql
+	#USER0=${USER}-pg
 	#sudo -u postgres -i
 	#psql -c "create user ${USER0};"
 	#psql -c "create database ${USER0};"

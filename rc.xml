@@ -188,6 +188,9 @@
 	<keybind key="W-3">
 		  <action name="GoToDesktop"><to>3</to></action>
   	</keybind>
+	<keybind key="W-4">
+		  <action name="GoToDesktop"><to>4</to></action>
+  	</keybind>
     <keybind key="C-A-Left">
       <action name="GoToDesktop">
         <to>left</to>
@@ -419,7 +422,7 @@
     </keybind>
     <keybind key="C-A-t">
       <action name="Execute">
-        <command>lxterminal</command>
+        <command>x-terminal-emulator</command>
       </action>
     </keybind>
     <!-- Launch scrot when Print is pressed -->

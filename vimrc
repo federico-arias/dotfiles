@@ -7,9 +7,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
-
+" alternative for yats: Plugin 'leafgarland/typescript-vim'
+Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'yuezk/vim-js'
+Plugin 'maxmellon/vim-jsx-pretty'
 
 " ALE
 let g:ale_sign_error                  = '✘'
@@ -123,7 +124,8 @@ autocmd FileType markdown vmap <Leader><Bar> :EasyAlign*<Bar><Enter>
 autocmd FileType sql setlocal formatprg=/usr/local/bin/pg_format\ --keyword-case=0\ --wrap-limit\ 30\ --tabs\ -
 " Replace tabs for spaces in certain file types
 autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
-autocmd FileType yaml,yml setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType yaml,yml,cucumber setlocal tabstop=2 shiftwidth=2 expandtab
+autocmd FileType cucumber setlocal tabstop=2 shiftwidth=2 expandtab
 " Navigate to file
 autocmd FileType javascript setlocal suffixesadd=.js,.jsx
 autocmd FileType javascriptreact setlocal suffixesadd=.js,.jsx
@@ -137,16 +139,15 @@ autocmd FileType go nmap <C-]> :GoDef<CR>
 autocmd FileType javascript,javascriptreact,typescript nnoremap <Leader><Leader> :ALEFindReferences<CR>
 autocmd FileType go nnoremap <Leader><Leader> :GoReferrers<CR>
 " format sql with sqlfmt
-autocmd Filetype sql set formatprg=/home/federico/.local/bin/sqlfmt\
+autocmd FileType sql set formatprg=/home/federico/.local/bin/sqlfmt\
 " Modify the file before writing the buffer to disk
 "autocmd BufWritePre *.sql :execute "normal ggVGgq"
 "
 "break lines at words, not letters.
 autocmd FileType txt setlocal linebreak
 autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-autocmd Filetype gitcommit setlocal spell textwidth=54
+autocmd FileType gitcommit setlocal spell textwidth=54
 autocmd BufRead,BufNewFile,BufWritePre *.md setlocal textwidth=70
-autocmd Filetype gitcommit setlocal spell textwidth=54
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
