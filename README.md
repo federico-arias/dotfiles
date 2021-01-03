@@ -1,0 +1,5 @@
+# Use
+
+```bash
+./install golang
+```
