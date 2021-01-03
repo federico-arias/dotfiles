@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_system () {
+setup () {
 	sudo apt-get install -y openbox rofi flameshot inotify-tools jq zsh \
 		blueman bluez \
 		inkscape gimp blender
@@ -51,7 +51,8 @@ install_editor () {
 	npm install -g csslint markdownlint typescript
 	pip3 install proselint
 
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	#sudo apt-get install -y fzf
+	git clone --depth 1 -b master https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 }
 
@@ -134,20 +135,20 @@ install_scala() {
 }
 
 install_flutter () {
-	sudo apt-get install -y libglu1-mesa
 	install_java
+	sudo apt-get install -y libglu1-mesa
 	# Android
 	sudo apt-get install -y libmtp*
-	# Install Android Studio
-	# required libraries
-	sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
-	xdg-open "https://developer.android.com/studio#downloads"
 	# Dart
 	sudo apt-get install -y apt-transport-https
 	sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
 	sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
 	sudo apt-get update
 	sudo apt-get install -y dart
+	# Android Studio
+	# required libraries for Android Studio
+	sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+	xdg-open "https://developer.android.com/studio#downloads"
 
 	# flutter
 	rm -rf ${HOME}/.flutterrepo && git clone https://github.com/flutter/flutter.git -b stable ${HOME}/.flutterrepo
@@ -186,19 +187,23 @@ install_python () {
 }
 
 install_latex () {
+	install_haskell
 	sudo apt-get install -y pandoc texlive-full
 	mkdir -p ${HOME}/.pandoc/templates
-	git clone https://github.com/Wandmalfarbe/pandoc-latex-template
-	cp pandoc-latex-template/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
+	git clone https://github.com/Wandmalfarbe/pandoc-latex-template /tmp/tex-repo
+	cp /tmp/tex-repo/eisvogel.tex ${HOME}/.pandoc/templates/eisvogel.latex
 	wget --directory-prefix /tmp https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v1.5.0/Eisvogel-1.5.0.zip
-	mkdir -p ${HOME}/.pandoc
 	unzip -d ${HOME}/.pandoc /tmp/Eisvogel-1.5.0.zip
-	curl -sSL https://get.haskellstack.org/ | sh
-	sudo apt-get install happy alex
+
 	# https://github.com/jnoll/gantt
 	git clone https://github.com/jnoll/gantt /tmp/gantt
 	cd /tmp/gantt
 	stack build && stack install
+}
+
+install_haskell () {
+	curl -sSL https://get.haskellstack.org/ | sh
+	sudo apt-get install happy alex
 }
 
 install_kubernetes () {
@@ -229,4 +234,14 @@ install_kubernetes () {
 	sudo mkdir -p /usr/local/bin/
 	sudo install minikube /usr/local/bin/
 	minikube config set driver virtualbox
+}
+
+install_gamedev () {
+	sudo add-apt-repository mapeditor.org/tiled
+	wget https://www.codeandweb.com/texturepacker/start-download?os=ubuntu&bits=64
+}
+
+install_cad () {
+	sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
+	sudo apt-get install -y freecad freecad-doc
 }
