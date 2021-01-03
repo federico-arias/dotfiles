@@ -46,6 +46,10 @@ do
 			install_gamedev
 			exit
 			;;
+		cad )
+			install_cad
+			exit
+			;;
 	esac
 	subcommand=$1
 	shift

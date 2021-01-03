@@ -27,6 +27,9 @@ setup () {
 	sudo apt-get install -y xfonts-75dpi
 	sudo dpkg -i /tmp/wkhtmltox_0.12.6-1.focal_amd64.deb
 	curl https://cli-assets.heroku.com/install.sh | sh
+
+	sudo apk --no-cache add ca-certificates
+	fc-cache -fv
 }
 
 install_editor () {
