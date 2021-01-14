@@ -11,7 +11,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'yuezk/vim-js'
 Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'jiangmiao/auto-pairs'
 
+" vim-auto
+let g:AutoPairsShortcutFastWrap		= '<M-w>'
+"
+"
 " ALE
 let g:ale_sign_error                  = '✘'
 let g:ale_sign_warning                = '⚠'

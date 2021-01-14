@@ -112,6 +112,10 @@ ${color a7a7a7}Cpu1:${color}${offset 30}${cpu cpu1}%${color}
 ${cpugraph cpu1 20,85 556B2F 9ACD32}
 ${voffset -54}${offset 112}${color a7a7a7}Cpu2:${color}${offset 30}${cpu cpu2}% ${color}
 $alignr${cpugraph cpu2 20,85 556B2F 9ACD32}
+${color a7a7a7}Cpu3:${color}${offset 30}${cpu cpu3}%${color}
+${cpugraph cpu3 20,85 556B2F 9ACD32}
+${voffset -54}${offset 112}${color a7a7a7}Cpu4:${color}${offset 30}${cpu cpu4}% ${color}
+$alignr${cpugraph cpu4 20,85 556B2F 9ACD32}
 
 M E M O R Y
 ${hr}
@@ -129,12 +133,12 @@ ${fs_bar /home}
 
 NETWORK
 ${hr}
-${color a7a7a7}Up:${color} ${upspeed wlo1}${color}
+${color a7a7a7}Up:${color} ${upspeed wlp2s0}${color}
 ${upspeedgraph eno1 20,85 556B2F 9ACD32}
-${color a7a7a7}Total:${color} ${totalup eno1}
-${voffset -71}${offset 94}${color a7a7a7}Down:${color} ${downspeed eno1}
-$alignr${downspeedgraph eno1 20,85 556B2F 9ACD32}${color}
-$alignr${color a7a7a7}Total:${color} ${totaldown eno1}
+${color a7a7a7}Total:${color} ${totalup wlp2s0}
+${voffset -71}${offset 94}${color a7a7a7}Down:${color} ${downspeed wlp2s0}
+$alignr${downspeedgraph wlp2s0 20,85 556B2F 9ACD32}${color}
+$alignr${color a7a7a7}Total:${color} ${totaldown wlp2s0}
 
 BATTERY
 $hr

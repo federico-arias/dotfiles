@@ -10,11 +10,14 @@ setup () {
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	ZSH_CUSTOM=${HOME}/.oh-my-zsh/custom/
 	ln -fs ${PWD}/conkyrc ${HOME}/.conkyrc
+	# openbox
+	[ ! -d ${HOME}/.config/openbox ] && mkdir -p ~/.config/openbox
 	ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
-	ln -fs ${PWD}/vimrc ${HOME}/.vimrc
-	ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
 	ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 	ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
+	# vim
+	ln -fs ${PWD}/vimrc ${HOME}/.vimrc
+	ln -fs ${PWD}/skeletons ${HOME}/.vim/skeleton
 	ln -fs ${PWD}/prettierrc ${HOME}/.prettierrc
 	ln -fs ${PWD}/gitignore ${HOME}/.gitignore
 	# We use this because ${HOME}/.zshrc is overwritten by oh my zsh
@@ -245,6 +248,6 @@ install_gamedev () {
 }
 
 install_cad () {
-	sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
+	#sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
 	sudo apt-get install -y freecad freecad-doc
 }

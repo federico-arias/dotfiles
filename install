@@ -5,10 +5,6 @@ set -e
 
 sudo apt-get update && sudo apt-get upgrade
 
-# Copy config files
-if [ ! -d ${HOME}/.config/openbox ]; then
-	mkdir -p ~/.config/openbox
-fi
 
 source "${PWD}/functions.sh"
 
