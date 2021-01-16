@@ -26,7 +26,8 @@ setup () {
 	[ ! -d ${HOME}/.fonts ] && mkdir ${HOME}/.fonts
 	[ ! -d ${HOME}/.screenshots ] && mkdir ${HOME}/.screenshots
 	[ ! -d ${HOME}/.config/openbox ] && mkdir -p ${HOME}/.config/openbox
-	wget --directory-prefix /tmp https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
+	wget --directory-prefix /tmp \
+		https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
 	sudo apt-get install -y xfonts-75dpi
 	sudo dpkg -i /tmp/wkhtmltox_0.12.6-1.focal_amd64.deb
 	curl https://cli-assets.heroku.com/install.sh | sh
@@ -248,6 +249,11 @@ install_gamedev () {
 }
 
 install_cad () {
-	#sudo add-apt-repository ppa:freecad-maintainers/freecad-stable
-	sudo apt-get install -y freecad freecad-doc
+	sudo add-apt-repository --yes ppa:freecad-maintainers/freecad-stable
+	sudo add-apt-repository --yes ppa:kicad/kicad-5.1-releases
+	sudo apt-get install -y freecad #freecad-doc
+	sudo apt update
+	sudo apt install --install-recommends kicad
+	# If you want demo projects
+	sudo apt install kicad-demos
 }

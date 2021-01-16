@@ -13,8 +13,6 @@ Plugin 'yuezk/vim-js'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'jiangmiao/auto-pairs'
 
-" vim-auto
-let g:AutoPairsShortcutFastWrap		= '<M-w>'
 "
 "
 " ALE
@@ -158,3 +156,6 @@ nnoremap <C-y> 3<C-y>
 
 " this fixes unexpected behavior from backspace
 set backspace=indent,eol,start
+
+" vim-auto
+let g:AutoPairsShortcutFastWrap = '<M-w>'
