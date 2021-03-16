@@ -11,10 +11,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'yuezk/vim-js'
 Plugin 'maxmellon/vim-jsx-pretty'
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'cespare/vim-toml'
+Plugin 'fatih/vim-go'
+Plugin 'dense-analysis/ale'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'plasticboy/vim-markdown'
 
-"
-"
 " ALE
 let g:ale_sign_error                  = '✘'
 let g:ale_sign_warning                = '⚠'
@@ -130,16 +132,16 @@ autocmd FileType coffee setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType yaml,yml,cucumber setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType cucumber setlocal tabstop=2 shiftwidth=2 expandtab
 " Navigate to file
-autocmd FileType javascript setlocal suffixesadd=.js,.jsx
-autocmd FileType javascriptreact setlocal suffixesadd=.js,.jsx
+autocmd FileType javascript,javascriptreact setlocal suffixesadd=.js,.jsx
 autocmd FileType typescript,typescript.tsx setlocal suffixesadd=.ts,.tsx
 autocmd FileType go setlocal suffixesadd=.go
 " Go to definitions
-autocmd FileType typescript nmap <C-]> :ALEGoToDefinition<CR>
+autocmd FileType typescript,typescript.tsx nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType javascript,javascriptreact nmap <C-]> :ALEGoToDefinition<CR>
 autocmd FileType go nmap <C-]> :GoDef<CR>
 " Go to referrers
-autocmd FileType javascript,javascriptreact,typescript nnoremap <Leader><Leader> :ALEFindReferences<CR>
+autocmd FileType javascript,javascriptreact nnoremap <Leader><Leader> :ALEFindReferences<CR>
+autocmd FileType typescript,typescript.tsx nnoremap <Leader><Leader> :ALEFindReferences<CR>
 autocmd FileType go nnoremap <Leader><Leader> :GoReferrers<CR>
 " format sql with sqlfmt
 autocmd FileType sql set formatprg=/home/federico/.local/bin/sqlfmt\
@@ -156,6 +158,3 @@ nnoremap <C-y> 3<C-y>
 
 " this fixes unexpected behavior from backspace
 set backspace=indent,eol,start
-
-" vim-auto
-let g:AutoPairsShortcutFastWrap = '<M-w>'

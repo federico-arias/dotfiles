@@ -30,6 +30,9 @@ export PATH="$PATH:$ACTIVATOR_HOME/bin:$SCALA_HOME/bin"
 # Flutter
 export PATH="$PATH:${HOME}/.flutterrepo/bin:/opt/android-studio/bin:${HOME}/.android-sdk/tools/bin"
 export ANDROID_SDK_ROOT="${HOME}/.android-sdk"
+# Android
+export PATH="$PATH:${HOME}/.android-sdk/platform-tools"
+export ANDROID_SDK="${HOME}/.android-sdk"
 # Local paths
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:$HOME/.local/bin:/snap/bin"
 

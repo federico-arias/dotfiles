@@ -13,6 +13,7 @@ setup () {
 	# openbox
 	[ ! -d ${HOME}/.config/openbox ] && mkdir -p ~/.config/openbox
 	ln -fs ${PWD}/autostart.sh ${HOME}/.config/openbox/autostart.sh
+	ln -fs ${PWD}/tmux.conf ${HOME}/.tmux.conf
 	ln -fs ${PWD}/rc.xml ${HOME}/.config/openbox/rc.xml
 	ln -fs ${PWD}/user-dirs.dirs ${HOME}/.config/openbox/user-dirs.dirs
 	# vim
@@ -43,13 +44,7 @@ install_editor () {
 	mkdir -p "${HOME}/.vim/colors"
 	wget https://raw.githubusercontent.com/morhetz/gruvbox/master/colors/gruvbox.vim
 	mv gruvbox.vim ~/.vim/colors/
-	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-		curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-	PATHOGEN_FOLDER=${HOME}/.vim/bundle
-	git clone https://github.com/dense-analysis/ale.git ${PATHOGEN_FOLDER}/ale
-	git clone https://github.com/fatih/vim-go.git ${PATHOGEN_FOLDER}/vim-go
-	git clone https://github.com/junegunn/vim-easy-align ${PATHOGEN_FOLDER}/vim-easy-align
-	git clone https://github.com/plasticboy/vim-markdown.git ${PATHOGEN_FOLDER}/vim-markdown
+	mkdir -p ~/.vim/autoload ~/.vim/bundle
 
 	# install Vundle
 	 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -145,7 +140,7 @@ install_flutter () {
 	install_java
 	sudo apt-get install -y libglu1-mesa
 	# Android
-	sudo apt-get install -y libmtp*
+	sudo apt-get install -y libmtp* jmtpfs
 	# Dart
 	sudo apt-get install -y apt-transport-https
 	sudo sh -c 'wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
@@ -156,6 +151,10 @@ install_flutter () {
 	# required libraries for Android Studio
 	sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
 	xdg-open "https://developer.android.com/studio#downloads"
+
+	# This is needed by React Native to recognize the device
+	#read DEVICE_ID
+	#printf 'SUBSYSTEM=="usb", ATTR{idVendor}=="%s", MODE="0666", GROUP="plugdev"' $DEVICE_ID | sudo tee /etc/udev/rules.d/51-android-usb.rules
 
 	# flutter
 	rm -rf ${HOME}/.flutterrepo && git clone https://github.com/flutter/flutter.git -b stable ${HOME}/.flutterrepo
@@ -253,7 +252,10 @@ install_cad () {
 	sudo add-apt-repository --yes ppa:kicad/kicad-5.1-releases
 	sudo apt-get install -y freecad #freecad-doc
 	sudo apt update
-	sudo apt install --install-recommends kicad
+	sudo apt install -y --install-recommends kicad
 	# If you want demo projects
-	sudo apt install kicad-demos
+	sudo apt install -y kicad-demos
+	# installs arduino cli
+	[ ! -d ${HOME}/.local/bin ] && mkdir -p ${HOME}/.local/bin
+	curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=~/.local/bin sh
 }
